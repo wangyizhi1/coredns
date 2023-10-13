@@ -12,7 +12,7 @@ RUN export DEBCONF_NONINTERACTIVE_SEEN=true \
     apt-get -yyqq install ca-certificates libcap2-bin; \
     apt-get clean
 COPY coredns /coredns
-RUN setcap cap_net_bind_service=+ep /coredns
+RUN setcap cap_net_bind_service=+eip /coredns
 
 FROM --platform=$TARGETPLATFORM ${BASE}
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
